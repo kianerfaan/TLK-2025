@@ -1,5 +1,5 @@
 # tweetlikekanye.com
-Welcome to the private repository for `tweetlikekanye.com`. This software is designed to [brief description of what tweetlikekanye.com does].
+Welcome to the private repository for `tweetlikekanye.com`.
 ## License
 **License Agreement**
 **1. Copyright Notice:**
