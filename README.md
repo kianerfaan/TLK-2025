@@ -13,6 +13,7 @@ Kian Erfaan grants to you, the user, a non-exclusive, non-transferable, revocabl
   - Reverse engineer, decompile, or disassemble the Software, except and only to the extent that such activity is expressly permitted by applicable law notwithstanding this limitation.
   - Distribute or make the Software available to any third party without explicit written permission.
 - Any rights not expressly granted herein are reserved by Kian Erfaan.
+
 **4. Commercial Use:**
 All commercial rights to this Software are expressly reserved by Kian Erfaan. Commercial use, including but not limited to selling, offering for sale, or distributing for profit, requires a separate commercial license agreement with Kian Erfaan.
 **5. Acknowledgments:**
