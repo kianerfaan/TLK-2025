@@ -1,38 +1,80 @@
-# tweetlikekanye.com
-Welcome to the private repository for `tweetlikekanye.com`.
+# Tweet Like Kanye
+
+A dynamic web application that generates authentic Kanye West-style tweets using the Groq AI API. Experience the unique writing style of Ye with this parody tweet generator.
+
+## Features
+
+- 🎯 AI-powered tweet generation using Groq
+- 💫 Authentic Kanye-style formatting and capitalization
+- 📱 Fully responsive design (mobile-first)
+- 📸 Download generated tweets as images
+- ⚡ Real-time tweet preview with engagement metrics
+
+## Tech Stack
+
+- **Frontend**: React.js with TypeScript
+- **Backend**: Node.js with Express
+- **AI Integration**: Groq AI API
+- **Styling**: Tailwind CSS + shadcn/ui
+- **Type Safety**: TypeScript
+- **State Management**: TanStack Query
+
+## Getting Started
+
+1. Clone the repository
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Set up environment variables:
+```env
+GROQ_API_KEY=your_groq_api_key
+```
+
+4. Start the development server:
+```bash
+npm run dev
+```
+
+## Project Structure
+
+```
+├── client/              # Frontend React application
+│   ├── src/
+│   │   ├── components/  # React components
+│   │   ├── hooks/      # Custom React hooks
+│   │   ├── lib/        # Utility functions
+│   │   └── pages/      # Page components
+├── server/             # Backend Express server
+│   ├── routes.ts      # API routes
+│   └── storage.ts     # Data storage interface
+└── shared/            # Shared types and schemas
+```
+
+## API Documentation
+
+### POST /api/generate
+Generates a Kanye West style tweet based on user input.
+
+**Request Body**:
+```json
+{
+  "prompt": "string"
+}
+```
+
+**Response**:
+```json
+{
+  "content": "string"
+}
+```
+
 ## License
-**License Agreement**
-**1. Copyright Notice:**
-Copyright (c) 2025 Kian Erfaan
 
-**2. License Grant:**
-This software and accompanying documentation (the "Software") is owned by Kian Erfaan and is protected by copyright laws and international copyright treaties, as well as other intellectual property laws and treaties. 
-Kian Erfaan grants to you, the user, a non-exclusive, non-transferable, revocable license to use the Software solely for personal, non-commercial purposes, unless explicitly agreed otherwise in writing by Kian Erfaan.
+© 2025 Tweet Like Kanye • All rights reserved
 
-**3. Restrictions:**
-- You may not:
-  - Sell, rent, lease, sublicense, or otherwise commercially exploit the Software without written permission from Kian Erfaan.
-  - Reverse engineer, decompile, or disassemble the Software, except and only to the extent that such activity is expressly permitted by applicable law notwithstanding this limitation.
-  - Distribute or make the Software available to any third party without explicit written permission.
-- Any rights not expressly granted herein are reserved by Kian Erfaan.
+## Disclaimer
 
-**4. Commercial Use:**
-All commercial rights to this Software are expressly reserved by Kian Erfaan. Commercial use, including but not limited to selling, offering for sale, or distributing for profit, requires a separate commercial license agreement with Kian Erfaan.
-
-**5. Acknowledgments:**
-This Software incorporates the Mistral 8x7B model for certain functionalities. Users must adhere to any terms set by Mistral AI regarding the use of their model.
-
-**6. Termination:**
-This license is effective until terminated. Your rights under this license will terminate automatically without notice from Kian Erfaan if you fail to comply with any term(s) of this license. Upon termination, you must cease all use of the Software and destroy all copies, full or partial, of the Software.
-
-**7. Disclaimer of Warranty:**
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL KIAN ERFAAN BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-**8. Governing Law:**
-This License shall be governed by and construed in accordance with the laws of New York State, United States of America, without regard to its conflict of law principles.
-
-**Signature:**
-Kian Erfaan
-
-**Date:**
-February 11, 2025
+This is a parody site for satire and commentary. It is not affiliated with, endorsed by, or sponsored by Kanye West or his representatives. All likenesses and trademarks are used under fair use. Use at your own risk; we disclaim all liability for any claims arising from our content.
