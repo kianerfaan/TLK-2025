@@ -1,3 +1,10 @@
+/**
+ * TweetGenerator Component
+ * 
+ * A React component that handles user input and generates Kanye West style tweets
+ * using the Groq AI API. Includes form validation and loading states.
+ */
+
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
@@ -21,16 +28,22 @@ interface TweetMetrics {
 }
 
 export default function TweetGenerator() {
+  // State management for generated content
   const [generatedTweet, setGeneratedTweet] = useState<string>("");
   const [tweetMetrics, setTweetMetrics] = useState<TweetMetrics | null>(null);
   const { toast } = useToast();
 
+  // Form handling with react-hook-form
   const form = useForm<FormData>({
     defaultValues: {
       prompt: "",
     },
   });
 
+  /**
+   * Generates random engagement metrics for the tweet
+   * to simulate social media interaction
+   */
   const generateMetrics = (): TweetMetrics => {
     const isHours = Math.random() > 0.5;
     return {
@@ -44,6 +57,7 @@ export default function TweetGenerator() {
     };
   };
 
+  // API mutation for tweet generation
   const generateMutation = useMutation({
     mutationFn: async (data: FormData) => {
       const res = await apiRequest("POST", "/api/generate", data);
@@ -62,10 +76,12 @@ export default function TweetGenerator() {
     },
   });
 
+  // Form submission handler
   const onSubmit = (data: FormData) => {
     generateMutation.mutate(data);
   };
 
+  // Clear form and generated content
   const handleClear = () => {
     form.reset();
     setGeneratedTweet("");

@@ -1,3 +1,11 @@
+/**
+ * TweetPreview Component
+ * 
+ * Renders a Twitter-style card displaying the generated tweet with
+ * engagement metrics and download functionality. Optimized for both
+ * mobile and desktop views.
+ */
+
 import { useRef } from "react";
 import html2canvas from "html2canvas";
 import { Button } from "@/components/ui/button";
@@ -22,7 +30,6 @@ export default function TweetPreview({ content, metrics }: TweetPreviewProps) {
   const tweetRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
-  // Format numbers for display (e.g., 1.5K, 1M)
   const formatNumber = (num: number) => {
     if (num >= 1000000) return `${(num / 1000000).toFixed(1)}M`;
     if (num >= 1000) return `${(num / 1000).toFixed(1)}K`;
@@ -103,7 +110,6 @@ export default function TweetPreview({ content, metrics }: TweetPreviewProps) {
           </div>
         </div>
       </Card>
-
       <Button
         onClick={handleDownload}
         variant="outline"
