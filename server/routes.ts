@@ -1,20 +1,78 @@
+/**
+ * API Routes for the Tweet Like Kanye application
+ * This module handles API endpoints and Groq AI integration for tweet generation
+ */
+
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertTweetSchema } from "@shared/schema";
+import { insertTweetSchema, type GenerateTweetResponse } from "@shared/schema";
 import { Groq } from "groq-sdk";
+import { ZodError } from "zod";
 
 const groq = new Groq();
 
+/**
+ * Custom error class for API errors
+ */
+class APIError extends Error {
+  constructor(
+    message: string,
+    public statusCode: number = 500
+  ) {
+    super(message);
+    this.name = 'APIError';
+  }
+}
+
+/**
+ * Registers API routes for the Express application
+ * @param app - Express application instance
+ * @returns HTTP server instance
+ */
 export function registerRoutes(app: Express): Server {
+  /**
+   * Error handler middleware
+   */
+  const handleError = (err: Error, res: Express.Response) => {
+    console.error("API Error:", err);
+
+    if (err instanceof ZodError) {
+      return res.status(400).json({
+        message: "Invalid request data",
+        errors: err.errors,
+      });
+    }
+
+    if (err instanceof APIError) {
+      return res.status(err.statusCode).json({
+        message: err.message,
+      });
+    }
+
+    return res.status(500).json({
+      message: "Internal server error",
+    });
+  };
+
+  /**
+   * POST /api/generate
+   * Generates a Kanye West style tweet using Groq AI
+   * 
+   * @body {string} prompt - User input to generate tweet from
+   * @returns {Object} Generated tweet content
+   * @throws {400} If prompt is invalid
+   * @throws {500} If tweet generation fails
+   */
   app.post("/api/generate", async (req, res) => {
     try {
       const { prompt } = req.body;
 
       if (!prompt || typeof prompt !== "string") {
-        return res.status(400).json({ message: "Invalid prompt" });
+        throw new APIError("Invalid prompt", 400);
       }
 
+      // Configure Groq AI for Kanye-style tweet generation
       const completion = await groq.chat.completions.create({
         messages: [
           {
@@ -52,16 +110,19 @@ IMPORTANT: Take the user's exact words and transform them into maximum 2-3 conne
       });
 
       const generatedTweet = completion.choices[0]?.message?.content?.trim().replace(/["']/g, '') || "";
+      if (!generatedTweet) {
+        throw new APIError("Failed to generate tweet content");
+      }
 
-      // Clean up any metadata prefixes that might appear
+      // Clean up metadata prefixes and format tweet
       const cleanedTweet = generatedTweet
         .replace(/^(USER INPUT|TWEET|OUTPUT):\s*/i, '')
-        .replace(/^[^A-Z0-9]*/g, ''); // Remove any non-alphanumeric prefixes
+        .replace(/^[^A-Z0-9]*/g, '');
 
-      // Ensure tweet doesn't exceed Twitter's limit
+      // Handle Twitter's character limit
       let finalTweet = cleanedTweet.slice(0, 280);
 
-      // If the tweet was cut off mid-sentence, find the last complete thought
+      // Ensure tweet ends at a complete thought
       if (finalTweet.length === 280) {
         const lastSpaceIndex = finalTweet.lastIndexOf('   ');
         if (lastSpaceIndex > 0) {
@@ -69,15 +130,16 @@ IMPORTANT: Take the user's exact words and transform them into maximum 2-3 conne
         }
       }
 
+      // Store and return the generated tweet
       const tweet = await storage.createTweet({
         content: finalTweet,
         prompt: prompt,
       });
 
-      res.json({ content: tweet.content });
+      const response: GenerateTweetResponse = { content: tweet.content };
+      res.json(response);
     } catch (error) {
-      console.error("Error generating tweet:", error);
-      res.status(500).json({ message: "Failed to generate tweet" });
+      handleError(error as Error, res);
     }
   });
 
