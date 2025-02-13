@@ -73,7 +73,7 @@ Generates a Kanye West style tweet based on user input.
 
 ## License
 
-© 2025 Tweet Like Kanye • All rights reserved
+© 2025 Apache-2.0 License • All rights reserved
 
 ## Disclaimer
 
