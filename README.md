@@ -1,4 +1,4 @@
-# Tweet Like Kanye
+# Tweet Like Kanye (TWEETLIKEKANYE.COM WAS SOLD TO Namecheap user rouleau0x on March 25, 2025)
 
 A dynamic web application that generates authentic Kanye West-style tweets using the Groq AI API. Experience the unique writing style of Ye with this parody tweet generator.
 
