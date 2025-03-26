@@ -1,21 +1,51 @@
 /**
  * API Routes for the Tweet Like Kanye application
  * This module handles API endpoints and Groq AI integration for tweet generation
+ * 
+ * @module server/routes
+ * @description Defines the API routes for the Tweet Like Kanye application,
+ * including tweet generation with Groq AI and error handling middleware.
+ * The main functionality is the /api/generate endpoint which transforms
+ * user input into Kanye West style tweets using a large language model.
+ *
+ * @requires express
+ * @requires http
+ * @requires groq-sdk
+ * @requires zod
+ * @requires ./storage
+ * @requires @shared/schema
  */
 
-import type { Express } from "express";
+import type { Express, Response } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertTweetSchema, type GenerateTweetResponse } from "@shared/schema";
 import { Groq } from "groq-sdk";
 import { ZodError } from "zod";
 
+/**
+ * Initialize Groq AI client
+ * This connects to the Groq API using the API key from environment variables
+ * @requires GROQ_API_KEY environment variable to be set
+ */
 const groq = new Groq();
 
 /**
  * Custom error class for API errors
+ * 
+ * @class APIError
+ * @extends Error
+ * @description Custom error class that includes HTTP status codes for API error responses
+ * Allows for consistent error handling and appropriate HTTP status codes
+ * 
+ * @property {number} statusCode - HTTP status code to be sent in the response
  */
 class APIError extends Error {
+  /**
+   * Create an API error
+   * @param {string} message - Error message
+   * @param {number} [statusCode=500] - HTTP status code (defaults to 500 Internal Server Error)
+   */
   constructor(
     message: string,
     public statusCode: number = 500
@@ -33,8 +63,13 @@ class APIError extends Error {
 export function registerRoutes(app: Express): Server {
   /**
    * Error handler middleware
+   * Processes different types of errors and returns appropriate HTTP responses
+   * 
+   * @param {Error} err - The error to handle
+   * @param {Response} res - Express response object
+   * @returns {Response} Express response with error details
    */
-  const handleError = (err: Error, res: Express.Response) => {
+  const handleError = (err: Error, res: Response) => {
     console.error("API Error:", err);
 
     if (err instanceof ZodError) {

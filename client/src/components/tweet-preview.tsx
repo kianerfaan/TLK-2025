@@ -1,9 +1,23 @@
 /**
  * TweetPreview Component
  * 
- * Renders a Twitter-style card displaying the generated tweet with
- * engagement metrics and download functionality. Optimized for both
- * mobile and desktop views.
+ * @module components/tweet-preview
+ * @description Renders a Twitter-style card displaying the generated tweet with
+ * engagement metrics and download functionality. This component is optimized for both
+ * mobile and desktop views, providing a realistic social media post preview.
+ * 
+ * Key features:
+ * - Responsive layout that mimics Twitter's interface
+ * - Automatic formatting of large numbers (K, M suffixes)
+ * - Screenshot functionality to download the tweet as an image
+ * - Realistic engagement metrics display
+ * 
+ * @requires react
+ * @requires html2canvas
+ * @requires lucide-react
+ * @requires @/components/ui/button
+ * @requires @/components/ui/card
+ * @requires @/hooks/use-toast
  */
 
 import { useRef } from "react";
@@ -13,6 +27,18 @@ import { Card } from "@/components/ui/card";
 import { Download } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
+/**
+ * Tweet metrics data structure for display in the UI
+ * Note: This is also defined in shared/schema.ts but duplicated here
+ * to avoid circular dependencies
+ * 
+ * @interface TweetMetrics
+ * @property {number} replies - Number of simulated replies
+ * @property {number} retweets - Number of simulated retweets
+ * @property {number} likes - Number of simulated likes
+ * @property {number} views - Number of simulated views
+ * @property {string} timestamp - Simulated time since posting (e.g., "2h", "5m")
+ */
 interface TweetMetrics {
   replies: number;
   retweets: number;
@@ -21,6 +47,13 @@ interface TweetMetrics {
   timestamp: string;
 }
 
+/**
+ * Props for the TweetPreview component
+ * 
+ * @interface TweetPreviewProps
+ * @property {string} content - The generated tweet text to display
+ * @property {TweetMetrics} metrics - Engagement metrics to display with the tweet
+ */
 interface TweetPreviewProps {
   content: string;
   metrics: TweetMetrics;

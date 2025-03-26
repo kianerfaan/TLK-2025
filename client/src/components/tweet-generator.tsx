@@ -1,8 +1,28 @@
 /**
  * TweetGenerator Component
  * 
- * A React component that handles user input and generates Kanye West style tweets
- * using the Groq AI API. Includes form validation and loading states.
+ * @module components/tweet-generator
+ * @description A React component that handles user input and generates Kanye West style tweets
+ * using the Groq AI API. Manages form state, API interactions, and loading indicators.
+ * The component includes a text input form and displays the generated tweet
+ * with simulated engagement metrics.
+ * 
+ * Key functionalities:
+ * - Form handling with validation
+ * - API mutation to generate tweets
+ * - Loading state management
+ * - Random metric generation for tweet previews
+ * - Clear functionality for resetting the form
+ * 
+ * @requires react
+ * @requires react-hook-form
+ * @requires @tanstack/react-query
+ * @requires lucide-react
+ * @requires @/components/ui/button
+ * @requires @/components/ui/textarea
+ * @requires @/hooks/use-toast
+ * @requires @/lib/queryClient
+ * @requires ./tweet-preview
  */
 
 import { useState } from "react";
@@ -15,10 +35,27 @@ import { apiRequest } from "@/lib/queryClient";
 import TweetPreview from "./tweet-preview";
 import { Loader2 } from "lucide-react";
 
+/**
+ * Form data structure for tweet generation
+ * @interface FormData
+ * @property {string} prompt - The user input to be transformed into a Kanye-style tweet
+ */
 interface FormData {
   prompt: string;
 }
 
+/**
+ * Tweet metrics data structure for display in the UI
+ * Note: This is also defined in shared/schema.ts but duplicated here
+ * to avoid circular dependencies
+ * 
+ * @interface TweetMetrics
+ * @property {number} replies - Number of simulated replies
+ * @property {number} retweets - Number of simulated retweets
+ * @property {number} likes - Number of simulated likes
+ * @property {number} views - Number of simulated views
+ * @property {string} timestamp - Simulated time since posting (e.g., "2h", "5m")
+ */
 interface TweetMetrics {
   replies: number;
   retweets: number;
@@ -27,6 +64,12 @@ interface TweetMetrics {
   timestamp: string;
 }
 
+/**
+ * Component for generating and displaying Kanye West style tweets
+ * 
+ * @component
+ * @returns {JSX.Element} Rendered component
+ */
 export default function TweetGenerator() {
   // State management for generated content
   const [generatedTweet, setGeneratedTweet] = useState<string>("");
