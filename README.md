@@ -1,7 +1,5 @@
 # Tweet Like Kanye [ARCHIVED]
 
-![image](https://github.com/user-attachments/assets/03880c08-2b05-4c38-91e2-1ae3374916af)
-
 A dynamic web application that generates authentic Kanye West-style tweets using the Groq AI API. Experience the unique writing style of Ye with this parody tweet generator.
 
 > **NOTICE: TWEETLIKEKANYE.COM WAS SOLD TO Namecheap user rouleau0x on March 25, 2025.**
@@ -9,6 +7,8 @@ A dynamic web application that generates authentic Kanye West-style tweets using
 > **⚠️ THIS REPOSITORY IS READ-ONLY AND ARCHIVED**
 > 
 > This repository is maintained solely for archival and educational purposes following the domain sale. No further development or updates will be made to this codebase.
+
+![image](https://github.com/user-attachments/assets/03880c08-2b05-4c38-91e2-1ae3374916af)
 
 ## Features
 
