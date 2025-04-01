@@ -8,7 +8,7 @@ A dynamic web application that generates authentic Kanye West-style tweets using
 > 
 > This repository is maintained solely for archival and educational purposes following the domain sale. No further development or updates will be made to this codebase.
 
-[image](https://github.com/user-attachments/assets/03880c08-2b05-4c38-91e2-1ae3374916af)
+![image](https://github.com/user-attachments/assets/03880c08-2b05-4c38-91e2-1ae3374916af)
 
 ## Features
 
