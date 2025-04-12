@@ -104,10 +104,6 @@ The application is configured for deployment on Replit's infrastructure. The dep
 
 TLK-2025, previously tweetlikekanye.com (sold to rouleau0x via Namecheap, March 25, 2025), is a satirical parody app inspired by tweetliketrump.com, not affiliated with the referenced individual. It uses likenesses and trademarks under fair use. Users assume all risk; liability is disclaimed. No personal data is collected.
 
-## Contributing
-
-While this repository is archived, you can still fork it and use it as a reference for building similar applications.
-
 ## License
 
 © 2025 All Rights Reserved.
