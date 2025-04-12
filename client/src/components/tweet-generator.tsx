@@ -136,7 +136,7 @@ export default function TweetGenerator() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <div>
           <Textarea
-            placeholder="What should Kanye say? (Enter to Generate)"
+            placeholder="Enter to Generate"
             className="h-24 resize-none"
             {...form.register("prompt")}
           />

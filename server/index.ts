@@ -83,7 +83,7 @@ app.use((req, res, next) => {
 
     // Send error response to client
     res.status(status).json({ message });
-    throw err; // Re-throw for logging purposes
+    console.error("[Error]", err);
   });
 
   /**
