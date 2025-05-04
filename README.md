@@ -106,4 +106,4 @@ TLK-2025, previously tweetlikekanye.com (sold to rouleau0x via Namecheap, March 
 
 ## License
 
-© 2025 All Rights Reserved.
+© 2025 All Rights Reserved. Archived under MIT License.
