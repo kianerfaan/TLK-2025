@@ -1,7 +1,7 @@
 
-# TLK-2025 (Tweet Like Kanye)
+# TLK-2025
 
-A dynamic web application that generates authentic Kanye West-style tweets using the Groq AI API. Experience the unique writing style of Ye with this parody tweet generator.
+A dynamic web application that generates authentic Ye-style tweets using the Groq AI API. Experience the unique writing style of Ye with this parody tweet generator.
 
 > **NOTICE: TWEETLIKEKANYE.COM WAS SOLD TO Namecheap user rouleau0x on March 25, 2025.**
 > 
@@ -107,9 +107,3 @@ TLK-2025, previously tweetlikekanye.com (sold to rouleau0x via Namecheap, March 
 ## License
 
 © 2025 All Rights Reserved.
-
-For disputes:
-- U.S. users – arbitration in Philadelphia, PA (AAA Consumer Rules)
-- International users – arbitration in New York, NY (ICDR International Rules)
-
-Contact via public GitHub repository.
